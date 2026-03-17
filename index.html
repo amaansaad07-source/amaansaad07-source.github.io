@@ -6,6 +6,7 @@
 <title>Amaan Saad — Finance, Strategy & Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
   :root {
     --bg: #0b0b0f;
@@ -119,6 +120,7 @@
   .nav-links a:hover { color: var(--gold); }
   .nav-links a:hover::after { width: 100%; }
 
+  /* ── Hero with globe ── */
   .hero {
     min-height: 100vh;
     display: flex; align-items: center;
@@ -140,9 +142,41 @@
     letter-spacing: -0.04em;
   }
 
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
   .hero-content {
-    position: relative; z-index: 2;
-    max-width: 1000px;
+    max-width: 600px;
+    flex-shrink: 0;
+  }
+
+  #globe-container {
+    width: 500px;
+    height: 500px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  #globe-container canvas {
+    display: block;
+  }
+
+  .globe-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,165,92,0.08) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .hero-eyebrow {
@@ -161,7 +195,7 @@
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3.8rem, 9vw, 8rem);
+    font-size: clamp(3.5rem, 7vw, 7rem);
     font-weight: 400;
     line-height: 1.0;
     letter-spacing: -0.03em;
@@ -189,7 +223,7 @@
   .hero-sub {
     font-size: 1.1rem; line-height: 1.9;
     color: var(--text-muted);
-    max-width: 550px;
+    max-width: 500px;
     opacity: 0; animation: fadeUp 1s ease 1s forwards;
   }
 
@@ -657,6 +691,11 @@
   @keyframes marqueeScroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1000px) {
+    #globe-container { display: none; }
+    .hero-inner { justify-content: flex-start; }
   }
 
   @media (max-width: 900px) {
